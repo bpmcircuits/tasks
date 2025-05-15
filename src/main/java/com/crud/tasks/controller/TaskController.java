@@ -1,7 +1,7 @@
 package com.crud.tasks.controller;
 
 import com.crud.tasks.domain.Task;
-import com.crud.tasks.domain.TaskDto;
+import com.crud.tasks.domain.TaskDTO;
 import com.crud.tasks.mapper.TaskMapper;
 import com.crud.tasks.service.DbService;
 import lombok.RequiredArgsConstructor;
@@ -21,13 +21,13 @@ public class TaskController {
     private final TaskMapper taskMapper;
 
     @GetMapping
-    public ResponseEntity<List<TaskDto>> getTasks() {
+    public ResponseEntity<List<TaskDTO>> getTasks() {
         List<Task> tasks = service.getAllTasks();
         return ResponseEntity.ok(taskMapper.mapToTaskDtoList(tasks));
     }
 
     @GetMapping(value = "{taskId}")
-    public ResponseEntity<TaskDto> getTask(@PathVariable Long taskId) throws TaskNotFoundException {
+    public ResponseEntity<TaskDTO> getTask(@PathVariable Long taskId) throws TaskNotFoundException {
         return ResponseEntity.ok(taskMapper.mapToTaskDto(service.getTask(taskId)));
     }
 
@@ -38,14 +38,14 @@ public class TaskController {
     }
 
     @PutMapping
-    public ResponseEntity<TaskDto> updateTask(@RequestBody TaskDto taskDto) {
+    public ResponseEntity<TaskDTO> updateTask(@RequestBody TaskDTO taskDto) {
         Task task = taskMapper.mapToTask(taskDto);
         Task savedTask = service.saveTask(task);
         return ResponseEntity.ok(taskMapper.mapToTaskDto(savedTask));
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Void> createTask(@RequestBody TaskDto taskDto) {
+    public ResponseEntity<Void> createTask(@RequestBody TaskDTO taskDto) {
         Task task = taskMapper.mapToTask(taskDto);
         service.saveTask(task);
         return ResponseEntity.ok().build();
