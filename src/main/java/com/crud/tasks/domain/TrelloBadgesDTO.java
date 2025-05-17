@@ -8,14 +8,10 @@ import java.util.List;
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class TrelloBoardDTO {
+public class TrelloBadgesDTO {
 
-    @JsonProperty("name")
-    private String name;
-
-    @JsonProperty("id")
-    private String id;
-
-    @JsonProperty("lists")
-    private List<TrelloListDTO> lists;
+    @JsonProperty("votes")
+    private int votes;
+    @JsonProperty("attachmentsByType")
+    private TrelloAttachmentsByTypeDTO attachmentsByType;
 }
