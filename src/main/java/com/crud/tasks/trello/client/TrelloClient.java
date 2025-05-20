@@ -34,6 +34,7 @@ public class TrelloClient {
             return Optional.ofNullable(boardResponses).map(Arrays::asList).orElse(Collections.emptyList())
                     .stream()
                     .filter(b -> Objects.nonNull(b.getId()) && Objects.nonNull(b.getName()))
+                    .filter(b -> b.getName().toLowerCase().contains("kodilla"))
                     .toList();
         } catch (RestClientException e) {
             LOGGER.error(e.getMessage(), e);
