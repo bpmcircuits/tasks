@@ -1,6 +1,6 @@
 package com.crud.tasks.trello.client;
 
-import com.crud.tasks.domain.CreatedTrelloCard;
+import com.crud.tasks.domain.CreatedTrelloCardDTO;
 import com.crud.tasks.domain.TrelloBadgesDTO;
 import com.crud.tasks.domain.TrelloBoardDTO;
 import com.crud.tasks.domain.TrelloCardDTO;
@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.web.client.RestTemplate;
 
@@ -74,16 +73,16 @@ class TrelloClientTest {
 
         TrelloBadgesDTO trelloBadgesDTO = new TrelloBadgesDTO();
 
-        CreatedTrelloCard createdTrelloCard = new CreatedTrelloCard(
+        CreatedTrelloCardDTO createdTrelloCardDTO = new CreatedTrelloCardDTO(
                 "1",
                 "Test task",
                 "http://test.com",
                 trelloBadgesDTO
         );
 
-        when(restTemplate.postForObject(uri, null, CreatedTrelloCard.class)).thenReturn(createdTrelloCard);
+        when(restTemplate.postForObject(uri, null, CreatedTrelloCardDTO.class)).thenReturn(createdTrelloCardDTO);
         //when
-        CreatedTrelloCard newCard = trelloClient.createNewCard(trelloCardDTO);
+        CreatedTrelloCardDTO newCard = trelloClient.createNewCard(trelloCardDTO);
         //then
         assertEquals("1", newCard.getId());
         assertEquals("Test task", newCard.getName());
