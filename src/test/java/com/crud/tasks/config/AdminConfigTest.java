@@ -18,6 +18,11 @@ class AdminConfigTest {
 
     @Test
     void testAdminConfig() {
+        assertNotNull(adminConfig);
+    }
+
+    @Test
+    void testGetMail() {
         // When
         String result = adminConfig.getAdminMail();
         // Then

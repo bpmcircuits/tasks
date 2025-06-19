@@ -21,6 +21,11 @@ class TrelloConfigTest {
 
     @Test
     void testTrelloConfig() {
+        assertNotNull(trelloConfig);
+    }
+
+    @Test
+    void testGetters() {
         // When
         String endpoint = trelloConfig.getTrelloApiEndpoint();
         String key = trelloConfig.getTrelloAppKey();
@@ -28,6 +33,7 @@ class TrelloConfigTest {
         String username = trelloConfig.getUsername();
 
         // Then
+        assertNotNull(trelloConfig);
         assertEquals("https://api.trello.com/1", endpoint);
         assertEquals("1234", key);
         assertEquals("5678", token);
